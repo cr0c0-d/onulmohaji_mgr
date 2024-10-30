@@ -1,0 +1,103 @@
+
+buildscript {
+    ext {
+        queryDslVersion = "5.0.0"   // QueryDSL 버전
+    }
+}
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.5'   // 스프링 부트 플러그인
+    id 'io.spring.dependency-management' version '1.1.4'   // 의존성 관리 플러그인
+}
+
+group = 'me.croco'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '17'  // 컴파일할 때 사용되는 자바 버전 명시
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.projectlombok:lombok'
+
+    // spring security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // OAuth2 사용
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+    // JWT
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'javax.activation:activation:1.1'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.0.1'
+    implementation 'com.sun.xml.bind:jaxb-impl:2.3.1'
+    implementation 'org.json:json:20240303'
+
+    // mysql connector
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // jasypt - 데이터 암호화 라이브러리
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
+
+    // h2
+    runtimeOnly 'com.h2database:h2' // 인메모리 데이터베이스
+
+    // WebClient
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    // Jsoup
+    implementation 'org.jsoup:jsoup:1.17.2'
+
+    // QueryDSL
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"
+
+    // Spring Doc
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+
+    // java 컴파일러 플러그인
+    annotationProcessor (
+            "jakarta.annotation:jakarta.annotation-api", // java.lang.NoClassDefFoundError (javax.annotation.Generated) 에러 대응 코드
+            "jakarta.persistence:jakarta.persistence-api", // java.lang.NoClassDefFoundError (javax.annotation.Entity) 에러 대응 코드
+            "com.querydsl:querydsl-apt:${queryDslVersion}:jakarta", // Annotation Processing Tool(APT) -> entity 클래스 기반 Q타입 소스 생성
+    )
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty "jasypt.encryptor.password", System.getProperties().get("jasypt.encryptor.password")
+    systemProperty "onulmohaji.croco.front", System.getProperties().get("onulmohaji.croco.front")
+}
+
+// QueryDSL 설정
+
+// Q클래스 생성을 위한 설정 추가
+def querydslDir = "$projectDir/build/generated/querydsl"
+
+// Q클래스 위치 지정
+sourceSets {
+    main.java.srcDirs querydslDir
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    querydsl.extendsFrom compileClasspath
+}
+
+clean {
+    delete querydslDir
+}
