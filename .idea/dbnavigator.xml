@@ -17,7 +17,319 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="5f7c5476-5421-4114-8599-5d2fd5825757">
-      <console name="Connection" type="STANDARD" schema="" session="Main" />
+      <console name="Connection" type="STANDARD" schema="onulmohaji" session="Main"><![CDATA[CREATE TABLE Popupstore (
+    store_id BIGINT NOT NULL,
+    name VARCHAR(255),
+    category_id INT,
+    main_brand VARCHAR(255),
+    brand_1 VARCHAR(255),
+    brand_2 VARCHAR(255),
+    title VARCHAR(255),
+    top_level_address VARCHAR(255),
+    address VARCHAR(255),
+    pre_register BOOLEAN,
+    pre_register_start_date VARCHAR(255),
+    pre_register_end_date VARCHAR(255),
+    pre_register_link VARCHAR(255),
+    hashtag VARCHAR(255),
+    thumbnails VARCHAR(255),
+    latitude VARCHAR(255),
+    longitude VARCHAR(255),
+    search_items VARCHAR(255),
+    start_date VARCHAR(255),
+    end_date VARCHAR(255),
+    working_time TEXT,
+    status VARCHAR(255),
+    created_at VARCHAR(255),
+    updated_at VARCHAR(255),
+    PRIMARY KEY (store_id)
+);
+
+CREATE TABLE Popupstore_Image (
+    store_image_id BIGINT NOT NULL,
+    url VARCHAR(255) NOT NULL,
+    store_id BIGINT,
+    PRIMARY KEY (store_image_id)
+);
+
+
+CREATE TABLE Popupstore_Detail (
+    store_detail_id BIGINT NOT NULL,
+    store_id BIGINT,
+    contents TEXT,
+    images TEXT,
+    notice TEXT,
+    brand_url VARCHAR(255),
+    insta_url VARCHAR(255),
+    parking TINYINT(1),
+    free TINYINT(1),
+    no_kids TINYINT(1),
+    food TINYINT(1),
+    pet TINYINT(1),
+    adult TINYINT(1),
+    wifi TINYINT(1),
+    created_at VARCHAR(255),
+    updated_at VARCHAR(255),
+    PRIMARY KEY (store_detail_id)
+);
+
+drop table popupstore;
+drop table popupstore_detail;  
+drop table popupstore_image;  
+
+select * from popupstore;
+
+create table exhibition (
+    seq bigint primary key,
+    title varchar(255),
+    start_date varchar(10),
+    end_date varchar(10),
+    place varchar(255),
+    realm_name varchar(255),
+    area varchar(255),
+    thumbnail varchar(1000),
+    gps_x varchar(255),
+    gps_y varchar(255)
+);
+
+select * from exhibition;
+
+create table exhibition_detail(
+seq bigint primary key,
+title varchar(255), 
+start_date varchar(10), 
+end_date varchar(10), 
+place varchar(255), 
+realm_name varchar(255), 
+area varchar(255), 
+sub_title varchar(255), 
+price varchar(255), 
+contents1 text, 
+contents2 text, 
+url varchar(255), 
+phone varchar(255), 
+gps_x varchar(255), 
+gps_y varchar(255), 
+img_url varchar(255), 
+place_url varchar(255), 
+place_addr varchar(255), 
+place_seq varchar(255)
+);
+
+select * from exhibition_detail
+
+create table localcode (
+    id bigint primary key,
+    local_level int,
+    parent_id bigint,
+    name varchar(255),
+    longitude double,
+    latitude double
+);
+
+create table facility (
+id bigint primary key,
+place_name varchar(255),
+distance int,
+place_url varchar(255),
+category_name varchar(255),
+address_name varchar(255),
+road_address_name varchar(255),
+phone varchar(255),
+category_group_code varchar(255),
+category_group_name varchar(255),
+longitude Double,
+latitude Double
+);
+
+select * from facility;
+
+alter table facility 
+add column scorecnt int
+
+alter table facility
+drop column stars;
+
+create table member(
+    id bigint primary key auto_increment,
+    email varchar(255) unique,
+    nickname varchar(255),
+    password varchar(1000),
+    localcode_id bigint,
+    authorities varchar(255),
+    created_at timestamp
+);
+
+create table refresh_token(
+    id bigint primary key auto_increment,
+    user_id bigint unique,
+    refresh_token varchar(255)
+);
+
+drop table refresh_token;
+alter table refresh_token
+modify id bigint primary key AUTO_INCREMENT
+
+select * from member;
+
+delete from refresh_token;
+
+create table route(
+    id bigint primary key auto_increment,
+    user_id bigint not null,
+    route_date timestamp not null,
+    like_cnt int,
+    share_type int,
+    valid int    
+
+);
+
+create table route_detail(
+    id bigint primary key auto_increment,
+    route_id bigint not null,
+    order_no int not null,
+    place_id bigint not null,
+    place_type varchar(20) not null    
+);
+
+select * from exhibition_detail
+select * from route_detail;
+
+delete from route_detail;
+
+alter table popupstore 
+add column wpointx bigint;
+
+
+select * from localcode;
+
+alter table facility 
+add column tags text;
+
+create table festival(
+    id varchar(255) primary key,
+    title text,
+    thumbnail text,
+    latitude double,
+    longitude double,
+    contents1 text,
+    contents2 text,
+    start_date varchar(10),
+    end_date varchar(10),
+    address varchar(255),
+    area_nm varchar(50),
+    fare varchar(100),
+    insta_url varchar(255),
+    contact varchar(50)
+);
+
+select * from facility;
+
+create table route_permission(
+    id bigint primary key auto_increment,
+    route_id bigint not null,
+    user_id bigint not null,
+    route_date varchar(10) not null
+)
+
+select * from popupstore;
+
+alter table route
+add column share_code varchar(255)
+
+select * from route;
+
+select * from refresh_token;
+
+delete from member where password like '%naver%'; 
+
+alter table refresh_token
+modify refresh_token text
+
+update route
+set share_code = null
+
+select * from route_permission;
+
+create table custom_place(
+id bigint primary key auto_increment,
+user_id bigint not null,
+name text not null,
+address text not null,
+address_road text,
+latitude double not null,
+longitude double not null,
+created_at timestamp
+);
+
+
+select * from exhibition;
+select * from exhibition_detail;
+
+
+
+);
+
+select * from popupstore_detail;
+
+select * from festival;
+
+select * from route;
+
+select * from custom_place;
+
+delete from custom_place;
+
+select * from festival
+
+select * from exhibition_detail;
+
+alter table route 
+add column title varchar(255);
+
+delete from exhibition_detail where gps_x is null
+
+alter table festival
+modify column contact varchar(500);
+
+create table member_search_info (
+id bigint primary key,
+localcode_id bigint ,
+distance int,
+category_filter text
+);
+
+alter table member_search_info 
+add column default_date varchar(10);
+
+update member_search_info set default_date = 'today';
+
+select * from member;
+
+select * from member_search_info;
+
+select * from route_detail;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private Long id;
+
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
+    @Column(name = "place_type", nullable = false)
+    private String placeType;
+
+    @Column(name = "place_id", nullable = false)
+    private String placeId;
+
+create table bookmark (
+    id bigint primary key,
+    user_id bigint not null,
+    place_type varchar(50) not null,
+    place_id varchar(255) not null
+)]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
