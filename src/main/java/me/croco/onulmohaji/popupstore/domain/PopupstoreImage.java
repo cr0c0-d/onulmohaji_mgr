@@ -4,12 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PopupstoreImage {
 

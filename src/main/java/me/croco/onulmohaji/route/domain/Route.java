@@ -5,12 +5,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Entity
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@Data
 public class Route {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

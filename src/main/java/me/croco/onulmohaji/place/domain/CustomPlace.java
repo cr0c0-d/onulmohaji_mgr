@@ -9,12 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Setter
-@Getter
+@Data
 @EntityListeners(AuditingEntityListener.class)
-@AllArgsConstructor
-@NoArgsConstructor
 public class CustomPlace {
 
     @Id

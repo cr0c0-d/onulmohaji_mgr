@@ -3,17 +3,10 @@ package me.croco.onulmohaji.festival.domain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import me.croco.onulmohaji.api.dto.KoreanFestivalListFindResponse;
 
-@Entity
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class Festival {
     @Id
     @Column

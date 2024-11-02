@@ -6,12 +6,7 @@ import jakarta.persistence.Id;
 import lombok.*;
 import me.croco.onulmohaji.api.dto.KakaoLocalListFindResponse;
 
-@Entity
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class Facility {
 
     @Id

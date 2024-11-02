@@ -3,12 +3,7 @@ package me.croco.onulmohaji.route.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@Data
 public class RouteDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -5,12 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
-@Getter
-@Setter
-@Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class Exhibition {
 
     @Id

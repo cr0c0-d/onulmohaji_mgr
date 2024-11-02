@@ -2,12 +2,11 @@ package me.croco.onulmohaji.refreshToken.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
-@Entity
+@Data
 public class RefreshToken {
 
     @Id

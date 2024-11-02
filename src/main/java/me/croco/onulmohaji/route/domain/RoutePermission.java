@@ -3,11 +3,7 @@ package me.croco.onulmohaji.route.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class RoutePermission {
 
     @Id

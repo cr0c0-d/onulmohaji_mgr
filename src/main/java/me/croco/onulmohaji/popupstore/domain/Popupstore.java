@@ -9,11 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Popupstore {
 

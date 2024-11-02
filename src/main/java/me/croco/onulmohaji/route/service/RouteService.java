@@ -144,73 +144,73 @@ public class RouteService {
     public void updateRouteDetailOrder(List<RouteDetailUpdateRequest> routeDetailUpdateRequests) {
         routeRepository.updateRouteDetailOrder(routeDetailUpdateRequests);
     }
-
-    public String findRouteMapUrlByLatitudeAndLongitude(RouteMapUrlFindRequest request) {
-        Long startWpointx = null;
-        Long startWpointy = null;
-        Long endWpointx = null;
-        Long endWpointy = null;
-
-        String startPlaceType = request.getStartPlaceType();
-        String endPlaceType = request.getEndPlaceType();
-
-        switch (startPlaceType) {
-            case "popup" :
-                Popupstore popupstore = popupstoreRepository.findById(request.getStartPlaceId()).get();
-                startWpointx = popupstore.getWpointx();
-                startWpointy = popupstore.getWpointy();
-
-                break;
-
-            case "exhibition" :
-                Exhibition exhibition = exhibitionRepository.findById(request.getStartPlaceId()).get();
-                startWpointx = exhibition.getWpointx();
-                startWpointy = exhibition.getWpointy();
-
-                break;
-
-            default:
-                Facility facility = facilityRepository.findById(request.getStartPlaceId()).get();
-                startWpointx = facility.getWpointx();
-                startWpointy = facility.getWpointy();
-
-        }
-
-        switch (endPlaceType) {
-            case "popup" :
-                Popupstore popupstore = popupstoreRepository.findById(request.getStartPlaceId()).get();
-                endWpointx = popupstore.getWpointx();
-                endWpointy = popupstore.getWpointy();
-
-                break;
-
-            case "exhibition" :
-                Exhibition exhibition = exhibitionRepository.findById(request.getStartPlaceId()).get();
-                endWpointx = exhibition.getWpointx();
-                endWpointy = exhibition.getWpointy();
-
-                break;
-
-            default:
-                Facility facility = facilityRepository.findById(request.getStartPlaceId()).get();
-                endWpointx = facility.getWpointx();
-                endWpointy = facility.getWpointy();
-
-        }
-        String url = "https://map.kakao.com/?map_type=TYPE_MAP&target=walk&rt=" +
-                startWpointx+","+startWpointy+","+endWpointx+","+endWpointy+
-                "&rt1="+request.getStartPlaceName().replace(" ", "+") +
-                "&rt2=" + request.getEndPlaceName().replace(" ", "+");
-        return url;
-
-    }
-
-    public String findRouteMapUrlByWpointXAndY(RouteMapUrlFindRequest request) {
-        return "https://map.kakao.com/?map_type=TYPE_MAP&target=walk&rt=" +
-                request.getStartWpointX()+","+request.getStartWpointY()+","+request.getEndWpointX()+","+request.getEndWpointY()+
-                "&rt1="+request.getStartPlaceName().replace(" ", "+") +
-                "&rt2=" + request.getEndPlaceName().replace(" ", "+");
-    }
+//
+//    public String findRouteMapUrlByLatitudeAndLongitude(RouteMapUrlFindRequest request) {
+//        Long startWpointx = null;
+//        Long startWpointy = null;
+//        Long endWpointx = null;
+//        Long endWpointy = null;
+//
+//        String startPlaceType = request.getStartPlaceType();
+//        String endPlaceType = request.getEndPlaceType();
+//
+//        switch (startPlaceType) {
+//            case "popup" :
+//                Popupstore popupstore = popupstoreRepository.findById(request.getStartPlaceId()).get();
+//                startWpointx = popupstore.getWpointx();
+//                startWpointy = popupstore.getWpointy();
+//
+//                break;
+//
+//            case "exhibition" :
+//                Exhibition exhibition = exhibitionRepository.findById(request.getStartPlaceId()).get();
+//                startWpointx = exhibition.getWpointx();
+//                startWpointy = exhibition.getWpointy();
+//
+//                break;
+//
+//            default:
+//                Facility facility = facilityRepository.findById(request.getStartPlaceId()).get();
+//                startWpointx = facility.getWpointx();
+//                startWpointy = facility.getWpointy();
+//
+//        }
+//
+//        switch (endPlaceType) {
+//            case "popup" :
+//                Popupstore popupstore = popupstoreRepository.findById(request.getStartPlaceId()).get();
+//                endWpointx = popupstore.getWpointx();
+//                endWpointy = popupstore.getWpointy();
+//
+//                break;
+//
+//            case "exhibition" :
+//                Exhibition exhibition = exhibitionRepository.findById(request.getStartPlaceId()).get();
+//                endWpointx = exhibition.getWpointx();
+//                endWpointy = exhibition.getWpointy();
+//
+//                break;
+//
+//            default:
+//                Facility facility = facilityRepository.findById(request.getStartPlaceId()).get();
+//                endWpointx = facility.getWpointx();
+//                endWpointy = facility.getWpointy();
+//
+//        }
+//        String url = "https://map.kakao.com/?map_type=TYPE_MAP&target=walk&rt=" +
+//                startWpointx+","+startWpointy+","+endWpointx+","+endWpointy+
+//                "&rt1="+request.getStartPlaceName().replace(" ", "+") +
+//                "&rt2=" + request.getEndPlaceName().replace(" ", "+");
+//        return url;
+//
+//    }
+//
+//    public String findRouteMapUrlByWpointXAndY(RouteMapUrlFindRequest request) {
+//        return "https://map.kakao.com/?map_type=TYPE_MAP&target=walk&rt=" +
+//                request.getStartWpointX()+","+request.getStartWpointY()+","+request.getEndWpointX()+","+request.getEndWpointY()+
+//                "&rt1="+request.getStartPlaceName().replace(" ", "+") +
+//                "&rt2=" + request.getEndPlaceName().replace(" ", "+");
+//    }
 
     public void deleteRouteDetail(Long routeDetailId) {
         RouteDetail routeDetail = routeDetailRepository.findById(routeDetailId).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 routeDetail"));
